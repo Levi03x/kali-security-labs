@@ -19,6 +19,9 @@ Simulate a web-based credential harvesting workflow inside an isolated lab netwo
 ### 3. Execution Steps
 
 #### Step 1: Launch the SET Credential Harvester Listener
+
+![SET Credential Harvester Listener](IMG_9965.jpeg)
+
 Initialized the Social-Engineer Toolkit (`setoolkit`) on Kali Linux and configured the **Site Cloner** module under **Web Attack Vectors → Credential Harvester Attack Method**:
 * **Listener Interface / POST Back IP:** `10.6.6.1`
 * **Listening Port:** `80`
@@ -27,9 +30,15 @@ Initialized the Social-Engineer Toolkit (`setoolkit`) on Kali Linux and configur
 Once started, SET generated a mirrored copy of the DVWA login form and began listening for incoming HTTP `POST` requests.
 
 #### Step 2: HTML Redirect & Form Submission Flow
+
+![HTML Redirect and Cloned Login](IMG_9966.jpeg)
+
 Configured a lightweight HTML page using a `<meta http-equiv="refresh">` tag to route test traffic to the cloned login prompt on `10.6.6.1`. When test credentials were entered into the cloned DVWA login interface and submitted, the browser transmitted the form fields directly to the SET listener.
 
 #### Step 3: Capturing `POST` Parameters & Post-Submission Behavior
+
+![Captured POST Parameters](IMG_9967.jpeg)
+
 SET intercepted and logged the plaintext `username` and `password` `POST` parameters in real time in the terminal console before forwarding the session back to the legitimate DVWA page so the redirect appeared seamless to the user.
 
 ### 4. Key Takeaways & Defensive Mitigations
